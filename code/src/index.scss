@@ -1,6 +1,29 @@
 body {
-  background: pink;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.mainWrapper {
+  border: 1px solid red;
+
+}
+
+.grid {
+  border: 1px solid blue;
+  height: 95%;
+  padding: 20px;
+  display: grid;
+  grid-gap: 0px;
+  // align-content: center;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-template-rows: repeat(auto-fill, 100px);
+
+
+  &__box {
+    border: 1px solid green;
+    min-width: 100px;
+    height: 100px;
+  }
 }
