@@ -14,20 +14,30 @@ componentDidMount() {
 
 updateWindowSize = () => {
   this.setState({
-    vpWidth: window.innerWidth,
-    vpHeight: window.innerHeight
+    vpWidth: window.innerWidth - 2,
+    vpHeight: window.innerHeight - 4
   })
 }
 
   render() {
+// TODO Calculate leftover height and split the margin between top and bottom
+// Add a little safety margin for height
+// Make Boxside constant be incharge of Box Size with inline class
+// Make slider for box size so adjustable on different resolutions
+// Make settings for backrounds
+// Make boxes clickable??? for rocks players water or whatever.
+
+
     const { vpWidth, vpHeight } = this.state
+    const boxSide = 100
+    const nrOfBoxesWide = Math.floor(vpWidth / boxSide)
+    const nrOfBoxesHigh = Math.floor(vpHeight / boxSide)
+    const nrOfCells = Math.floor(vpWidth / boxSide) * Math.floor(vpHeight / boxSide)
+    const boxList = new Array(nrOfCells || 0).fill("")
 
-    const boxList = new Array(50).fill("")
-
-    console.log(boxList)
     return (
-      <div className="mainWrapper" style={{ width: vpWidth-2, height: vpHeight-2 }}>
-        <div className="grid">
+      <div className="mainWrapper" style={{ width: vpWidth, height: vpHeight }}>
+        <div className="grid" style={{ width: nrOfBoxesWide * boxSide }}>
           {boxList.map(box => {
             return <div className="grid__box"></div>
           })}

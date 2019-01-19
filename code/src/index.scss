@@ -6,23 +6,22 @@ body {
 }
 
 .mainWrapper {
-  border: 1px solid red;
-
+  // border: 1px solid red;
 }
 
 .grid {
-  border: 1px solid blue;
-  height: 95%;
-  padding: 20px;
+  border: 1px solid #272727;
+  // height: 100%;
+  margin: auto;
   display: grid;
   grid-gap: 0px;
-  // align-content: center;
+  align-content: center;
   grid-template-columns: repeat(auto-fill, 100px);
   grid-template-rows: repeat(auto-fill, 100px);
 
 
   &__box {
-    border: 1px solid green;
+    border: 1px solid #272727;
     min-width: 100px;
     height: 100px;
   }
