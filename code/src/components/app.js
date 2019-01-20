@@ -1,45 +1,62 @@
 import React from "react";
 
 class App extends React.Component {
+  state = {
+    vpHeight: 0,
+    vpWidth: 0
+  };
 
-state = {
-  windowHeight: 0,
-  windowWidth: 0
-}
+  componentDidMount() {
+    window.addEventListener("resize", this.updateWindowSize);
+    this.updateWindowSize();
+  }
 
-componentDidMount() {
-  window.addEventListener("resize", this.updateWindowSize)
-  this.updateWindowSize()
-}
-
-updateWindowSize = () => {
-  this.setState({
-    vpWidth: window.innerWidth - 2,
-    vpHeight: window.innerHeight - 4
-  })
-}
+  updateWindowSize = () => {
+    this.setState({
+      vpWidth: window.innerWidth - 10,
+      vpHeight: window.innerHeight - 10
+    });
+  };
 
   render() {
-// TODO Calculate leftover height and split the margin between top and bottom
-// Add a little safety margin for height
-// Make Boxside constant be incharge of Box Size with inline class
-// Make slider for box size so adjustable on different resolutions
-// Make settings for backrounds
-// Make boxes clickable??? for rocks players water or whatever.
+    // TODO
+    // Deal with console errors
+    // Make slider for box size so adjustable on different resolutions
+    // Make settings for backrounds
+    // Make boxes clickable??? for rocks players water or whatever.
 
+    const { vpWidth, vpHeight } = this.state;
+    const boxSide = 100;
+    const nrOfBoxesWide = Math.floor(vpWidth / boxSide);
+    const nrOfBoxesHigh = Math.floor(vpHeight / boxSide);
+    const nrOfCells =
+      Math.floor(vpWidth / boxSide) * Math.floor(vpHeight / boxSide);
+    const boxList = new Array(nrOfCells || 0).fill("");
+    const marginVertical = vpHeight - nrOfBoxesHigh * boxSide;
 
-    const { vpWidth, vpHeight } = this.state
-    const boxSide = 100
-    const nrOfBoxesWide = Math.floor(vpWidth / boxSide)
-    const nrOfBoxesHigh = Math.floor(vpHeight / boxSide)
-    const nrOfCells = Math.floor(vpWidth / boxSide) * Math.floor(vpHeight / boxSide)
-    const boxList = new Array(nrOfCells || 0).fill("")
+    console.log("window.innerWidth: ", window.innerWidth);
+    console.log("window.innerHeight: ", window.innerHeight);
 
     return (
-      <div className="mainWrapper" style={{ width: vpWidth, height: vpHeight }}>
-        <div className="grid" style={{ width: nrOfBoxesWide * boxSide }}>
+      <div
+        className="mainWrapper"
+        style={{ width: vpWidth + 10, height: vpHeight + 10 }}
+      >
+        <div
+          className="grid"
+          style={{
+            width: nrOfBoxesWide * boxSide + 1,
+            height: nrOfBoxesHigh * boxSide,
+            marginTop: marginVertical / 2
+          }}
+        >
           {boxList.map(box => {
-            return <div className="grid__box"></div>
+            return (
+              <div
+                className="grid__box"
+                style={{ width: boxSide, heigth: boxSide }}
+              />
+            );
           })}
         </div>
       </div>
