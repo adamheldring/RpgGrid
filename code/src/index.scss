@@ -3,6 +3,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-image: url("./assets/grass-big.jpg");
+  background-size: cover;
 }
 
 .mainWrapper {
@@ -10,8 +12,8 @@ body {
 }
 
 .grid {
-  border: 1px solid #272727;
-  border-right: 2px solid #272727;
+  border: 2px solid #444444;
+  border-right: 4px solid #444444;
   margin: auto;
   display: grid;
   grid-gap: 0px;
@@ -20,7 +22,7 @@ body {
   grid-template-rows: repeat(auto-fill, 100px);
 
   &__box {
-    border: 1px solid #272727;
+    border: 2px solid #444444;
     // width: 100px;
     // height: 100px;
   }
