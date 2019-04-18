@@ -19,14 +19,6 @@ class App extends React.Component {
   };
 
   render() {
-    // TODO
-    // Make box size user adjustable by setting grid numbers inline
-    // Make slider for box size so adjustable on different resolutions
-    // Make settings for backrounds
-    // Make boxes clickable??? for rocks players water or whatever.
-    // Deal with console errors'
-    // Make bg-images proper size
-
     const { vpWidth, vpHeight } = this.state;
     const boxSide = 100;
     const nrOfBoxesWide = Math.floor(vpWidth / boxSide);
