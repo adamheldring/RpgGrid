@@ -1,6 +1,7 @@
 import React from "react";
+import Tile from "./Tile";
 
-class App extends React.Component {
+class Board extends React.Component {
   state = {
     vpHeight: 0,
     vpWidth: 0
@@ -45,10 +46,7 @@ class App extends React.Component {
           }}
         >
           {boxList.map(box => (
-            <div
-              className="grid__box"
-              style={{ width: boxSide, heigth: boxSide }}
-            />
+            <Tile boxSide />
           ))}
         </div>
       </div>
@@ -56,4 +54,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Board;

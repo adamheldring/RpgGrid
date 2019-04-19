@@ -11,6 +11,11 @@ body {
   margin: auto;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: center
+}
+
 .grid {
   border: 2px solid #444444;
   border-right: 4px solid #444444;
@@ -23,7 +28,10 @@ body {
 
   &__box {
     border: 2px solid #444444;
-    // width: 100px;
-    // height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.2);
+    color: #FFF;
   }
 }
