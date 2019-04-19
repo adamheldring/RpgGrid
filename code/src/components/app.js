@@ -44,14 +44,12 @@ class App extends React.Component {
             marginTop: marginVertical / 2
           }}
         >
-          {boxList.map(box => {
-            return (
-              <div
-                className="grid__box"
-                style={{ width: boxSide, heigth: boxSide }}
-              />
-            );
-          })}
+          {boxList.map(box => (
+            <div
+              className="grid__box"
+              style={{ width: boxSide, heigth: boxSide }}
+            />
+          ))}
         </div>
       </div>
     );
