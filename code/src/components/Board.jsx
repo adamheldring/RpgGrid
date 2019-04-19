@@ -2,52 +2,53 @@ import React from "react";
 import Tile from "./Tile";
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.board = React.createRef();
+  }
+
   state = {
-    vpHeight: 0,
-    vpWidth: 0
+    boardHeight: 0,
+    boardWidth: 0
   };
 
   componentDidMount() {
-    window.addEventListener("resize", this.updateWindowSize);
-    this.updateWindowSize();
+    window.addEventListener("resize", this.updateBoardSize);
+    this.updateBoardSize();
   }
 
-  updateWindowSize = () => {
+  updateBoardSize = () => {
+    const { clientHeight, clientWidth } = this.board.current;
     this.setState({
-      vpWidth: window.innerWidth - 10,
-      vpHeight: window.innerHeight - 10
+      boardWidth: clientWidth - 20,
+      boardHeight: clientHeight - 20
     });
   };
 
   render() {
-    const { vpWidth, vpHeight } = this.state;
+    const { boardWidth, boardHeight } = this.state;
+    console.log(boardWidth, boardHeight);
     const boxSide = 100;
-    const nrOfBoxesWide = Math.floor(vpWidth / boxSide);
-    const nrOfBoxesHigh = Math.floor(vpHeight / boxSide);
+    const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
+    const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
     const nrOfCells =
-      Math.floor(vpWidth / boxSide) * Math.floor(vpHeight / boxSide);
+      Math.floor(boardWidth / boxSide) * Math.floor(boardHeight / boxSide);
     const boxList = new Array(nrOfCells || 0).fill("");
-    const marginVertical = vpHeight - nrOfBoxesHigh * boxSide;
-
-    console.log("window.innerWidth: ", window.innerWidth);
-    console.log("window.innerHeight: ", window.innerHeight);
+    // const marginVertical = boardHeight - nrOfBoxesHigh * boxSide;
 
     return (
-      <div
-        className="mainWrapper"
-        style={{ width: vpWidth + 10, height: vpHeight + 10 }}
-      >
+      <div className="gridWrapper" ref={this.board}>
         <div
           className="grid"
           style={{
             width: nrOfBoxesWide * boxSide + 1,
-            height: nrOfBoxesHigh * boxSide,
-            marginTop: marginVertical / 2
+            height: nrOfBoxesHigh * boxSide
+            // marginTop: marginVertical / 2
           }}
         >
-          {boxList.map(box => (
+          {/* {boxList.map(box => (
             <Tile boxSide />
-          ))}
+          ))} */}
         </div>
       </div>
     );

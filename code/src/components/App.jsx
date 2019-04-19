@@ -5,7 +5,7 @@ import Toolbar from "./Toolbar";
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="mainWrapper">
         <Toolbar />
         <Board />
       </div>
