@@ -35,7 +35,7 @@ class Board extends React.Component {
 
   render() {
     const { boardWidth, boardHeight } = this.state;
-    const boxSide = 100;
+    const { boxSide } = this.props;
     const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
     const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
 
@@ -47,7 +47,9 @@ class Board extends React.Component {
           className="grid"
           style={{
             width: nrOfBoxesWide * boxSide,
-            height: nrOfBoxesHigh * boxSide
+            height: nrOfBoxesHigh * boxSide,
+            gridTemplateColumns: `repeat(auto-fill, ${boxSide}px)`,
+            gridTemplateRows: `repeat(auto-fill, ${boxSide}px)`
           }}
         >
           {boxList.map(box => (

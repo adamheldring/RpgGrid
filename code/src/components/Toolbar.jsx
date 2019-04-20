@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Toolbar = props => {
+const Toolbar = ({ boxSide, setBoxSide }) => {
   const [isExpanded, toggleIsExpanded] = useState(false);
   console.log("Toolbar expanded: ", isExpanded);
   return (
@@ -9,14 +9,20 @@ const Toolbar = props => {
         className="toolbar__toggle"
         onClick={() => toggleIsExpanded(!isExpanded)}
       >
-        <i class="fas fa-tools" />
+        <i class="fab fa-fort-awesome" />
       </div>
       <div className={`toolbar ${isExpanded ? "" : "toolbar--collapsed"}`}>
         <h1>TOOLBAR</h1>
-        <input type="range" />
-        <button>Toggel edit mode</button>
-        <button>Drag style to tile</button>
-        <button>Save/Load</button>
+        <input
+          type="range"
+          min="50"
+          max="150"
+          value={boxSide}
+          onChange={e => setBoxSide(e.target.value)}
+        />
+        <p>Boxside: {boxSide} px</p>
+        <button className="toolbar__button">Drag style to tile</button>
+        <button className="toolbar__button">Save/Load</button>
         <select name="backgroundPicker" id="backgroundPicker">
           <option value="0">Meadow</option>
           <option value="1">Water</option>

@@ -3,11 +3,24 @@ import Board from "./Board";
 import Toolbar from "./Toolbar";
 
 class App extends React.Component {
+  state = {
+    boxSide: 100
+  };
+
+  setBoxSide = updatedBoxSide => {
+    this.setState({
+      boxSide: updatedBoxSide
+    });
+  };
+
   render() {
     return (
       <div className="mainWrapper">
-        <Toolbar />
-        <Board />
+        <Toolbar
+          boxSide={this.state.boxSide}
+          setBoxSide={updatedBoxSide => this.setBoxSide(updatedBoxSide)}
+        />
+        <Board boxSide={this.state.boxSide} />
       </div>
     );
   }

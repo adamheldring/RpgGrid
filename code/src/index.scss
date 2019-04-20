@@ -20,6 +20,7 @@ body {
   height: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
   
   &--collapsed {
     display: none;
@@ -41,6 +42,9 @@ body {
     height: 40px;
     width: 40px;
   }
+  &__button {
+    height: 40px
+  }
 }
 
 .gridWrapper {
@@ -56,8 +60,6 @@ body {
   display: grid;
   grid-gap: 0px;
   align-content: center;
-  grid-template-columns: repeat(auto-fill, 100px);
-  grid-template-rows: repeat(auto-fill, 100px);
 
   &__box {
     box-sizing: border-box;
