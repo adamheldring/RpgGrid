@@ -25,30 +25,34 @@ class Board extends React.Component {
     });
   };
 
-  render() {
+  createBoxArray = boxSide => {
     const { boardWidth, boardHeight } = this.state;
-    console.log(boardWidth, boardHeight);
-    const boxSide = 100;
-    const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
-    const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
     const nrOfCells =
       Math.floor(boardWidth / boxSide) * Math.floor(boardHeight / boxSide);
     const boxList = new Array(nrOfCells || 0).fill("");
-    // const marginVertical = boardHeight - nrOfBoxesHigh * boxSide;
+    return boxList;
+  };
+
+  render() {
+    const { boardWidth, boardHeight } = this.state;
+    const boxSide = 100;
+    const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
+    const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
+
+    const boxList = this.createBoxArray(boxSide);
 
     return (
       <div className="gridWrapper" ref={this.board}>
         <div
           className="grid"
           style={{
-            width: nrOfBoxesWide * boxSide + 1,
+            width: nrOfBoxesWide * boxSide,
             height: nrOfBoxesHigh * boxSide
-            // marginTop: marginVertical / 2
           }}
         >
-          {/* {boxList.map(box => (
-            <Tile boxSide />
-          ))} */}
+          {boxList.map(box => (
+            <Tile boxSide={boxSide} />
+          ))}
         </div>
       </div>
     );

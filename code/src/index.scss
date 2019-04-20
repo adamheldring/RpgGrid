@@ -9,7 +9,6 @@ body {
 
 .mainWrapper {
   height: 100vh;
-  border: 1px solid blue;
 }
 
 .toolbar {
@@ -44,30 +43,28 @@ body {
   }
 }
 
-
 .gridWrapper {
   height: 100%;
-  background-color: rgba(0,255,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .grid {
-  margin: auto;
   border: 2px solid #444444;
-  // border-right: 4px solid #444444;
-  // margin: auto;
-  // display: grid;
-  // grid-gap: 0px;
-  // align-content: center;
-  // grid-template-columns: repeat(auto-fill, 100px);
-  // grid-template-rows: repeat(auto-fill, 100px);
+  display: grid;
+  grid-gap: 0px;
+  align-content: center;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-template-rows: repeat(auto-fill, 100px);
 
   &__box {
+    box-sizing: border-box;
     border: 2px solid #444444;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0,0,0,0.2);
     color: #FFF;
   }
 }
