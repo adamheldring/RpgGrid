@@ -32,12 +32,12 @@ class Board extends React.Component {
   };
 
   createBoxMatrix = () => {
-    const { boardWidth, boardHeight, boxSide } = this.state;
+    const { boardWidth, boardHeight } = this.state;
+    const { boxSide } = this.props;
     const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
     const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
-    console.log("FIX THIS - BOXES HIGH", nrOfBoxesHigh);
 
-    this.setState({ boxMatrix: [["test"]] });
+    // this.setState({ boxMatrix: [["test"]] });
     let newBoxMatrix = [];
     let newBoxRow = [];
     for (let i = 0; i < nrOfBoxesWide; i++) {
@@ -46,15 +46,8 @@ class Board extends React.Component {
     for (let i = 0; i < nrOfBoxesHigh; i++) {
       newBoxMatrix.push(newBoxRow);
     }
-    console.log("HELLO FROM CREATE MATRIX");
-    console.log("NEW ROW: ", newBoxRow);
-    console.log("NEW MATRIX: ", newBoxMatrix);
-    console.table("NEW MATRIX TABLE: ", newBoxMatrix);
-
-    // const nrOfCells =
-    //   Math.floor(boardWidth / boxSide) * Math.floor(boardHeight / boxSide);
-    // const boxMatrix = new Array(nrOfCells || 0).fill("");
-    // return boxMatrix;
+    console.table(newBoxMatrix);
+    this.setState({ boxMatrix: newBoxMatrix });
   };
 
   updateBoxMatrix = boxSide => {
@@ -83,9 +76,19 @@ class Board extends React.Component {
             gridTemplateRows: `repeat(auto-fill, ${boxSide}px)`
           }}
         >
-          {boxMatrix.map(row =>
-            row.map(box => <Tile boxSide={boxSide} value={box} />)
-          )}
+          {boxMatrix.map((row, rowIndex) => {
+            if (rowIndex < nrOfBoxesHigh) {
+              return row.map((box, boxIndex) => {
+                if (boxIndex < nrOfBoxesWide) {
+                  return <Tile boxSide={boxSide} value={box} />;
+                } else {
+                  return null;
+                }
+              });
+            } else {
+              return null;
+            }
+          })}
         </div>
       </div>
     );
