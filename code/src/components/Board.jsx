@@ -1,6 +1,8 @@
 import React from "react";
 import Tile from "./Tile";
 
+const boardMargin = 20;
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -20,13 +22,18 @@ class Board extends React.Component {
 
   updateBoardSize = () => {
     const { clientHeight, clientWidth } = this.board.current;
+
     this.setState(
       {
-        boardWidth: clientWidth - 20,
-        boardHeight: clientHeight - 20
+        boardWidth: clientWidth - boardMargin,
+        boardHeight: clientHeight - boardMargin
       },
       () => {
-        if (this.state.boxMatrix.length === 0) this.createBoxMatrix();
+        if (this.state.boxMatrix.length === 0) {
+          this.createBoxMatrix();
+        } else {
+          this.updateBoxMatrix();
+        }
       }
     );
   };
@@ -50,13 +57,27 @@ class Board extends React.Component {
     this.setState({ boxMatrix: newBoxMatrix });
   };
 
-  updateBoxMatrix = boxSide => {
-    // const { boardWidth, boardHeight } = this.state;
-    // const nrOfCells =
-    //   Math.floor(boardWidth / boxSide) * Math.floor(boardHeight / boxSide);
-    // const boxMatrix = new Array(nrOfCells || 0).fill("");
-    // return boxMatrix;
-    // return this.state.boxMatrix;
+  updateBoxMatrix = () => {
+    console.log("Updating matrix");
+    const { boardWidth, boardHeight, boxMatrix } = this.state;
+    const { boxSide } = this.props;
+    const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
+    const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
+
+    console.log(nrOfBoxesHigh);
+    console.log(nrOfBoxesWide);
+
+    // TODO: PUSH BOXES ONTO MATRIX HERE
+    if (nrOfBoxesWide > boxMatrix[0].length) {
+      console.log("wider");
+    } else {
+      console.log("not wider");
+    }
+    if (nrOfBoxesHigh > boxMatrix.length) {
+      console.log("higher");
+    } else {
+      console.log("not higher");
+    }
   };
 
   render() {
