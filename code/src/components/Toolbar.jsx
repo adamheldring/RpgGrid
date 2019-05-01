@@ -9,7 +9,7 @@ const Toolbar = ({ boxSide, setBoxSide }) => {
         className="toolbar__toggle"
         onClick={() => toggleIsExpanded(!isExpanded)}
       >
-        <i class="fab fa-fort-awesome" />
+        <i className="fab fa-fort-awesome" />
       </div>
       <div className={`toolbar ${isExpanded ? "" : "toolbar--collapsed"}`}>
         <h1>TOOLBAR</h1>

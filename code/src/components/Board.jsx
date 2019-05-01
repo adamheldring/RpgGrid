@@ -44,40 +44,38 @@ class Board extends React.Component {
     const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
     const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
 
-    // this.setState({ boxMatrix: [["test"]] });
     let newBoxMatrix = [];
-    let newBoxRow = [];
-    for (let i = 0; i < nrOfBoxesWide; i++) {
-      newBoxRow.push(i);
-    }
     for (let i = 0; i < nrOfBoxesHigh; i++) {
-      newBoxMatrix.push(newBoxRow);
+      newBoxMatrix.push(new Array(nrOfBoxesWide).fill(null));
     }
-    console.table(newBoxMatrix);
     this.setState({ boxMatrix: newBoxMatrix });
   };
 
   updateBoxMatrix = () => {
-    console.log("Updating matrix");
     const { boardWidth, boardHeight, boxMatrix } = this.state;
     const { boxSide } = this.props;
     const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
     const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
+    const newMatrix = [...boxMatrix];
 
-    console.log(nrOfBoxesHigh);
-    console.log(nrOfBoxesWide);
-
-    // TODO: PUSH BOXES ONTO MATRIX HERE
-    if (nrOfBoxesWide > boxMatrix[0].length) {
-      console.log("wider");
-    } else {
-      console.log("not wider");
+    // Push another box to each row if board is too wide
+    if (nrOfBoxesWide > newMatrix[0].length) {
+      // calcs diff after resize, pushing one tile at the time is to slow for a fast resize
+      const boxesWideDiff = nrOfBoxesWide - newMatrix[0].length;
+      for (let i = 0; i < boxesWideDiff; i++) {
+        newMatrix.forEach(row => {
+          row.push(null);
+        });
+      }
     }
-    if (nrOfBoxesHigh > boxMatrix.length) {
-      console.log("higher");
-    } else {
-      console.log("not higher");
+    // Push row onto Matrix if board is too tall
+    if (nrOfBoxesHigh > newMatrix.length) {
+      const boxesHighDiff = nrOfBoxesHigh - newMatrix.length;
+      for (let i = 0; i < boxesHighDiff; i++) {
+        newMatrix.push(new Array(newMatrix[0].length).fill(null));
+      }
     }
+    this.setState({ boxMatrix: newMatrix });
   };
 
   render() {
@@ -101,7 +99,7 @@ class Board extends React.Component {
             if (rowIndex < nrOfBoxesHigh) {
               return row.map((box, boxIndex) => {
                 if (boxIndex < nrOfBoxesWide) {
-                  return <Tile boxSide={boxSide} value={box} />;
+                  return <Tile boxSide={boxSide} value={box} key={boxIndex} />;
                 } else {
                   return null;
                 }
