@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const Toolbar = ({ boxSide, setBoxSide }) => {
   const [isExpanded, toggleIsExpanded] = useState(false);
-  console.log("Toolbar expanded: ", isExpanded);
   return (
     <div className="toolbar__wrapper">
       <div
