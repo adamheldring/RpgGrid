@@ -1,7 +1,14 @@
 import React from "react";
 import Tile from "./Tile";
 
-const Board = ({ boxSide, boardWidth, boardHeight, boxMatrix, boardRef }) => {
+const Board = ({
+  boxSide,
+  boardWidth,
+  boardHeight,
+  boxMatrix,
+  boardRef,
+  handleBoxClick
+}) => {
   const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
   const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
 
@@ -20,7 +27,18 @@ const Board = ({ boxSide, boardWidth, boardHeight, boxMatrix, boardRef }) => {
           if (rowIndex < nrOfBoxesHigh) {
             return row.map((box, boxIndex) => {
               if (boxIndex < nrOfBoxesWide) {
-                return <Tile boxSide={boxSide} value={box} key={boxIndex} />;
+                return (
+                  <Tile
+                    rowIndex={rowIndex}
+                    boxIndex={boxIndex}
+                    boxSide={boxSide}
+                    value={box}
+                    key={boxIndex}
+                    handleBoxClick={(rowIndex, boxIndex) =>
+                      handleBoxClick(rowIndex, boxIndex)
+                    }
+                  />
+                );
               } else {
                 return null;
               }

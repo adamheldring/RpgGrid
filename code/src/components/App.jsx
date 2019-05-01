@@ -86,9 +86,14 @@ class App extends React.Component {
     this.setState({ boxMatrix: newMatrix });
   };
 
+  handleBoxClick = (rowIndex, boxIndex) => {
+    const newMatrix = [...this.state.boxMatrix];
+    newMatrix[rowIndex][boxIndex] = "X";
+    this.setState({ boxMatrix: newMatrix });
+  };
+
   render() {
     const { boxSide, boardWidth, boardHeight, boxMatrix } = this.state;
-    console.table(boxMatrix);
     return (
       <div className="mainWrapper">
         <Toolbar
@@ -101,6 +106,9 @@ class App extends React.Component {
           boardWidth={boardWidth}
           boardHeight={boardHeight}
           boxMatrix={boxMatrix}
+          handleBoxClick={(rowIndex, boxIndex) =>
+            this.handleBoxClick(rowIndex, boxIndex)
+          }
         />
       </div>
     );

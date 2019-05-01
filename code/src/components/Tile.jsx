@@ -1,9 +1,10 @@
 import React from "react";
 
-const Tile = ({ boxSide, value }) => {
+const Tile = ({ rowIndex, boxIndex, boxSide, value, handleBoxClick }) => {
   return (
     <div
       className="grid__box"
+      onClick={() => handleBoxClick(rowIndex, boxIndex)}
       style={{ width: `${boxSide}px`, heigth: `${boxSide}px` }}
     >
       {value}
