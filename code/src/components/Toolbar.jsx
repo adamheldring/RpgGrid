@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Toolbar = ({ boxSide, setBoxSide }) => {
+const Toolbar = ({ boxSide, setBoxSide, background, setBackground }) => {
   const [isExpanded, toggleIsExpanded] = useState(false);
   return (
     <div className="toolbar__wrapper">
@@ -22,11 +22,16 @@ const Toolbar = ({ boxSide, setBoxSide }) => {
         <p>Boxside: {boxSide} px</p>
         <button className="toolbar__button">Drag style to tile</button>
         <button className="toolbar__button">Save/Load</button>
-        <select name="backgroundPicker" id="backgroundPicker">
-          <option value="0">Meadow</option>
-          <option value="1">Water</option>
-          <option value="2">Mountains</option>
-          <option value="3">Forest</option>
+        <select
+          name="backgroundPicker"
+          id="backgroundPicker"
+          value={background}
+          onChange={e => setBackground(e.target.value)}
+        >
+          <option value="grass">Meadow</option>
+          <option value="water">Water</option>
+          <option value="forest">Forest</option>
+          <option value="desert">Desert</option>
         </select>
       </div>
     </div>

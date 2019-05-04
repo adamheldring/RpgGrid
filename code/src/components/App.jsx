@@ -15,7 +15,8 @@ class App extends React.Component {
     boxSide: 100,
     boardHeight: 0,
     boardWidth: 0,
-    boxMatrix: []
+    boxMatrix: [],
+    background: "grass"
   };
 
   componentDidMount() {
@@ -30,6 +31,13 @@ class App extends React.Component {
       },
       () => this.updateBoxMatrix()
     );
+  };
+
+  setBackground = updatedBackground => {
+    console.log("Setting background to: ", updatedBackground);
+    this.setState({
+      background: updatedBackground
+    });
   };
 
   updateBoardSize = () => {
@@ -94,12 +102,27 @@ class App extends React.Component {
   };
 
   render() {
-    const { boxSide, boardWidth, boardHeight, boxMatrix } = this.state;
+    const {
+      boxSide,
+      boardWidth,
+      boardHeight,
+      boxMatrix,
+      background
+    } = this.state;
     return (
-      <div className="mainWrapper">
+      <div
+        className="mainWrapper"
+        style={{
+          backgroundImage: `url(./bg/${background}.jpeg)`
+        }}
+      >
         <Toolbar
           boxSide={this.state.boxSide}
           setBoxSide={updatedBoxSide => this.setBoxSide(updatedBoxSide)}
+          background={background}
+          setBackground={updatedBackground =>
+            this.setBackground(updatedBackground)
+          }
         />
         <Board
           boardRef={this.boardRef}
