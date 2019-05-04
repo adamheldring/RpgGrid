@@ -1,72 +1,89 @@
 body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-image: url("./assets/grass-web.jpg");
-  background-size: cover;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background-image: url("./assets/grass-web.jpg");
+	background-size: cover;
 }
 
 .mainWrapper {
-  height: 100vh;
+	height: 100vh;
 }
 
 .toolbar {
-  color: white;
-  position: absolute;
-  top: 0;
-  background-color: lightgrey;
-  width: 100vw;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  &--collapsed {
-    display: none;
-  }
+	color: white;
+	background-color: darkgray;
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	opacity: 0.9;
+	-webkit-transition: width 0.3s;
+	transition: width 0.3s;
 
-  &__toggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    background-color: black;
-    border-radius: 50px;
-    height: 40px;
-    width: 40px;
-  }
-  &__button {
-    height: 40px
-  }
+	&__wrapper{
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;	
+	}
+
+	&--collapsed {
+		width: 0;
+		overflow: hidden;
+		border-bottom-left-radius: 20px;
+	}
+
+	&__toggle {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 10;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		float: right;
+		color: white;
+		font-weight: bold;
+		font-size: 20px;
+		background-color: black;
+		border-radius: 50px;
+		height: 40px;
+		width: 40px;
+	}
+	&__button {
+		height: 40px
+	}
 }
 
 .gridWrapper {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 
 .grid {
-  border: 2px solid #444444;
-  display: grid;
-  grid-gap: 0px;
-  align-content: center;
+	border: 2px solid #444444;
+	display: grid;
+	grid-gap: 0px;
+	align-content: center;
 
-  &__box {
-    box-sizing: border-box;
-    border: 2px solid #444444;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFF;
-  }
+	&__box {
+		box-sizing: border-box;
+		border: 2px solid #444444;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #FFF;
+
+		&--image {
+			width: 100%;
+		}
+	}
 }

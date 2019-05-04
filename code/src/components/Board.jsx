@@ -6,6 +6,7 @@ const Board = ({
   boardWidth,
   boardHeight,
   boxMatrix,
+  tiles,
   boardRef,
   handleBoxClick
 }) => {
@@ -33,6 +34,7 @@ const Board = ({
                     boxIndex={boxIndex}
                     boxSide={boxSide}
                     value={box}
+                    tiles={tiles}
                     key={boxIndex}
                     handleBoxClick={(rowIndex, boxIndex) =>
                       handleBoxClick(rowIndex, boxIndex)

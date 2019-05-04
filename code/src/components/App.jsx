@@ -3,6 +3,7 @@ import Board from "./Board";
 import Toolbar from "./Toolbar";
 
 const boardMargin = 20;
+const tiles = ["", "rock", "water", "tree"];
 
 class App extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class App extends React.Component {
 
     let newBoxMatrix = [];
     for (let i = 0; i < nrOfBoxesHigh; i++) {
-      newBoxMatrix.push(new Array(nrOfBoxesWide).fill(null));
+      newBoxMatrix.push(new Array(nrOfBoxesWide).fill(0));
     }
     this.setState({ boxMatrix: newBoxMatrix });
   };
@@ -72,7 +73,7 @@ class App extends React.Component {
       const boxesWideDiff = nrOfBoxesWide - newMatrix[0].length;
       for (let i = 0; i < boxesWideDiff; i++) {
         newMatrix.forEach(row => {
-          row.push(null);
+          row.push(0);
         });
       }
     }
@@ -80,7 +81,7 @@ class App extends React.Component {
     if (nrOfBoxesHigh > newMatrix.length) {
       const boxesHighDiff = nrOfBoxesHigh - newMatrix.length;
       for (let i = 0; i < boxesHighDiff; i++) {
-        newMatrix.push(new Array(newMatrix[0].length).fill(null));
+        newMatrix.push(new Array(newMatrix[0].length).fill(0));
       }
     }
     this.setState({ boxMatrix: newMatrix });
@@ -88,7 +89,7 @@ class App extends React.Component {
 
   handleBoxClick = (rowIndex, boxIndex) => {
     const newMatrix = [...this.state.boxMatrix];
-    newMatrix[rowIndex][boxIndex] = "X";
+    newMatrix[rowIndex][boxIndex] = (newMatrix[rowIndex][boxIndex] + 1) % 4;
     this.setState({ boxMatrix: newMatrix });
   };
 
@@ -106,6 +107,7 @@ class App extends React.Component {
           boardWidth={boardWidth}
           boardHeight={boardHeight}
           boxMatrix={boxMatrix}
+          tiles={tiles}
           handleBoxClick={(rowIndex, boxIndex) =>
             this.handleBoxClick(rowIndex, boxIndex)
           }
