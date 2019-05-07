@@ -1,9 +1,16 @@
 import React from "react";
+import { DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
 import Board from "./Board";
 import Toolbar from "./Toolbar";
 
 const boardMargin = 20;
-const tiles = ["", "rock", "water", "tree"];
+const tiles = [
+  { content: "" },
+  { content: "rock" },
+  { content: "water" },
+  { content: "tree" }
+];
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +23,8 @@ class App extends React.Component {
     boardHeight: 0,
     boardWidth: 0,
     boxMatrix: [],
-    background: "grass"
+    background: "grass",
+    clickEnabled: false
   };
 
   componentDidMount() {
@@ -34,7 +42,6 @@ class App extends React.Component {
   };
 
   setBackground = updatedBackground => {
-    console.log("Setting background to: ", updatedBackground);
     this.setState({
       background: updatedBackground
     });
@@ -101,13 +108,42 @@ class App extends React.Component {
     this.setState({ boxMatrix: newMatrix });
   };
 
+  handleTileDrop = (tileContent, tileTarget) => {
+    let newMatrix = [...this.state.boxMatrix];
+    let updatedValue;
+    switch (tileContent) {
+      case "rock": {
+        updatedValue = 1;
+        break;
+      }
+      case "water": {
+        updatedValue = 2;
+        break;
+      }
+      case "tree": {
+        updatedValue = 3;
+        break;
+      }
+      default: {
+        updatedValue = 0;
+      }
+    }
+    newMatrix[tileTarget.rowIndex][tileTarget.boxIndex] = updatedValue;
+    this.setState({ boxMatrix: newMatrix });
+  };
+
+  toggleClickEnabled = () => {
+    this.setState({ clickEnabled: !this.state.clickEnabled });
+  };
+
   render() {
     const {
       boxSide,
       boardWidth,
       boardHeight,
       boxMatrix,
-      background
+      background,
+      clickEnabled
     } = this.state;
     return (
       <div
@@ -124,6 +160,11 @@ class App extends React.Component {
             this.setBackground(updatedBackground)
           }
           tiles={tiles}
+          handleTileDrop={(tileContent, tileTarget) =>
+            this.handleTileDrop(tileContent, tileTarget)
+          }
+          clickEnabled={clickEnabled}
+          toggleClickEnabled={this.toggleClickEnabled}
         />
         <Board
           boardRef={this.boardRef}
@@ -135,10 +176,12 @@ class App extends React.Component {
           handleBoxClick={(rowIndex, boxIndex) =>
             this.handleBoxClick(rowIndex, boxIndex)
           }
+          clickEnabled={clickEnabled}
         />
       </div>
     );
   }
 }
 
-export default App;
+// export default App;
+export default DragDropContext(HTML5Backend)(App);

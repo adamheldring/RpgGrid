@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import Slider from "react-rangeslider";
+import DragTile from "./DragTile";
 import "react-rangeslider/lib/index.css";
 
-const Toolbar = ({ boxSide, setBoxSide, background, setBackground, tiles }) => {
+const Toolbar = ({
+  boxSide,
+  setBoxSide,
+  background,
+  setBackground,
+  tiles,
+  handleTileDrop,
+  clickEnabled,
+  toggleClickEnabled
+}) => {
   const [isExpanded, toggleIsExpanded] = useState(true);
   return (
     <div className="toolbar__wrapper">
@@ -30,23 +40,12 @@ const Toolbar = ({ boxSide, setBoxSide, background, setBackground, tiles }) => {
             {tiles.map((tile, tileIndex) => {
               if (tileIndex !== 0) {
                 return (
-                  <div
-                    className="grid-box"
-                    style={{
-                      border: `2px solid #444444`,
-                      padding: `5px`,
-                      width: `75px`,
-                      heigth: `75px`,
-                      marginBottom: `10px`,
-                      cursor: "pointer"
-                    }}
-                  >
-                    <img
-                      className="grid__box--image"
-                      src={`./tiles/${tile}.png`}
-                      alt="Tile"
-                    />
-                  </div>
+                  <DragTile
+                    tile={tile}
+                    handleTileDrop={(tileContent, tileTarget) =>
+                      handleTileDrop(tileContent, tileTarget)
+                    }
+                  />
                 );
               }
             })}
@@ -63,6 +62,9 @@ const Toolbar = ({ boxSide, setBoxSide, background, setBackground, tiles }) => {
             onChange={value => setBoxSide(value)}
           />
         </div>
+        <button className="toolbar__button" onClick={toggleClickEnabled}>
+          {clickEnabled ? "Disable click" : "Enable click"}
+        </button>
         <button className="toolbar__button">Save/Load</button>
       </div>
     </div>

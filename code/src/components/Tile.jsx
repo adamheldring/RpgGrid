@@ -1,26 +1,50 @@
 import React from "react";
+import { DropTarget } from "react-dnd";
 
-const Tile = ({
-  rowIndex,
-  boxIndex,
-  boxSide,
-  value,
-  handleBoxClick,
-  tiles
-}) => {
-  return (
+const tileTarget = {
+  drop(props, monitor, component) {
+    return {
+      rowIndex: props.rowIndex,
+      boxIndex: props.boxIndex
+    };
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    hovered: monitor.isOver(),
+    tile: monitor.getItem()
+  };
+}
+
+const Tile = props => {
+  const {
+    rowIndex,
+    boxIndex,
+    boxSide,
+    value,
+    handleBoxClick,
+    tiles,
+    clickEnabled
+  } = props;
+  const { connectDropTarget, hovered } = props;
+  const backgroundColor = hovered ? "lightgreen" : "";
+
+  return connectDropTarget(
     <div
+      onClick={clickEnabled && (() => handleBoxClick(rowIndex, boxIndex))}
       className="grid__box"
-      onClick={() => handleBoxClick(rowIndex, boxIndex)}
       style={{
         width: `${boxSide}px`,
-        heigth: `${boxSide}px`
+        heigth: `${boxSide}px`,
+        backgroundColor: `${backgroundColor}`
       }}
     >
       {value > 0 && (
         <img
           className="grid__box--image"
-          src={`./tiles/${tiles[value]}.png`}
+          src={`./tiles/${tiles[value].content}.png`}
           alt="Tile"
         />
       )}
@@ -28,4 +52,4 @@ const Tile = ({
   );
 };
 
-export default Tile;
+export default DropTarget("tile", tileTarget, collect)(Tile);
