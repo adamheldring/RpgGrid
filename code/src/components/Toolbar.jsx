@@ -37,7 +37,8 @@ const Toolbar = ({ boxSide, setBoxSide, background, setBackground, tiles }) => {
                       padding: `5px`,
                       width: `75px`,
                       heigth: `75px`,
-                      marginBottom: `10px`
+                      marginBottom: `10px`,
+                      cursor: "pointer"
                     }}
                   >
                     <img
