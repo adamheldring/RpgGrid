@@ -7,21 +7,20 @@ body {
 
 .mainWrapper {
 	height: 100vh;
-	// background-image: url("./assets/grass.jpeg");
 	background-size: cover;
 }
 
 .toolbar {
 	color: white;
-	background-color: darkgray;
+	background-color: grey;
 	position: absolute;
 	top: 0;
-	width: 100vw;
-	height: auto;
+	width: 200px;
+	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
 	opacity: 0.9;
 	-webkit-transition: width 0.3s;
 	transition: width 0.3s;
@@ -58,6 +57,11 @@ body {
 	&__button {
 		height: 40px
 	}
+	&__slider {
+		&--wrapper {
+			background: grey
+		}
+	}
 }
 
 .gridWrapper {
@@ -86,4 +90,12 @@ body {
 			width: 100%;
 		}
 	}
+}
+
+.rangeslider-vertical .rangeslider__fill {
+	background-color: red
+}
+
+.rangeslider__label-item::before {
+	background-color: white !important;
 }

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Slider from "react-rangeslider";
+import "react-rangeslider/lib/index.css";
 
-const Toolbar = ({ boxSide, setBoxSide, background, setBackground }) => {
-  const [isExpanded, toggleIsExpanded] = useState(false);
+const Toolbar = ({ boxSide, setBoxSide, background, setBackground, tiles }) => {
+  const [isExpanded, toggleIsExpanded] = useState(true);
   return (
     <div className="toolbar__wrapper">
       <div
@@ -11,18 +13,8 @@ const Toolbar = ({ boxSide, setBoxSide, background, setBackground }) => {
         <i className="fab fa-fort-awesome" />
       </div>
       <div className={`toolbar ${isExpanded ? "" : "toolbar--collapsed"}`}>
-        <h1>TOOLBAR</h1>
-        <input
-          type="range"
-          min="50"
-          max="150"
-          value={boxSide}
-          onChange={e => setBoxSide(e.target.value)}
-        />
-        <p>Boxside: {boxSide} px</p>
-        <button className="toolbar__button">Drag style to tile</button>
-        <button className="toolbar__button">Save/Load</button>
         <select
+          style={{ marginBottom: "20px" }}
           name="backgroundPicker"
           id="backgroundPicker"
           value={background}
@@ -33,6 +25,44 @@ const Toolbar = ({ boxSide, setBoxSide, background, setBackground }) => {
           <option value="forest">Forest</option>
           <option value="desert">Desert</option>
         </select>
+        <div className="toolbar__tiles">
+          <div className="tile">
+            {tiles.map((tile, tileIndex) => {
+              if (tileIndex !== 0) {
+                return (
+                  <div
+                    className="grid-box"
+                    style={{
+                      border: `2px solid #444444`,
+                      padding: `5px`,
+                      width: `75px`,
+                      heigth: `75px`,
+                      marginBottom: `10px`
+                    }}
+                  >
+                    <img
+                      className="grid__box--image"
+                      src={`./tiles/${tile}.png`}
+                      alt="Tile"
+                    />
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </div>
+        <div className="toolbar__slider--wrapper">
+          <Slider
+            labels={{ 50: "S", 100: "M", 150: "L" }}
+            className="toolbar__slider"
+            min={50}
+            max={150}
+            orientation="vertical"
+            value={boxSide}
+            onChange={value => setBoxSide(value)}
+          />
+        </div>
+        <button className="toolbar__button">Save/Load</button>
       </div>
     </div>
   );

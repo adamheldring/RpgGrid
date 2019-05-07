@@ -123,6 +123,7 @@ class App extends React.Component {
           setBackground={updatedBackground =>
             this.setBackground(updatedBackground)
           }
+          tiles={tiles}
         />
         <Board
           boardRef={this.boardRef}
