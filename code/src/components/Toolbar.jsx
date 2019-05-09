@@ -13,7 +13,7 @@ const Toolbar = ({
   clickEnabled,
   toggleClickEnabled
 }) => {
-  const [isExpanded, toggleIsExpanded] = useState(true);
+  const [isExpanded, toggleIsExpanded] = useState(false);
   return (
     <div className="toolbar__wrapper">
       <div
@@ -65,7 +65,7 @@ const Toolbar = ({
         <button className="toolbar__button" onClick={toggleClickEnabled}>
           {clickEnabled ? "Disable click" : "Enable click"}
         </button>
-        <button className="toolbar__button">Save/Load</button>
+        {/* <button className="toolbar__button">Save/Load</button> */}
       </div>
     </div>
   );
