@@ -1,8 +1,24 @@
 import React from "react";
 import { DndProvider } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
 import TouchBackend from "react-dnd-touch-backend";
+import MultiBackend, { TouchTransition } from "react-dnd-multi-backend";
 import Board from "./Board";
 import Toolbar from "./Toolbar";
+
+const HTML5toTouch = {
+  backends: [
+    {
+      backend: HTML5Backend
+    },
+    {
+      backend: TouchBackend,
+      options: { enableMouseEvents: true },
+      preview: true,
+      transition: TouchTransition
+    }
+  ]
+};
 
 const boardMargin = 20;
 const tiles = [
@@ -146,7 +162,7 @@ class App extends React.Component {
       clickEnabled
     } = this.state;
     return (
-      <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
+      <DndProvider backend={MultiBackend} options={HTML5toTouch}>
         <div
           className="mainWrapper"
           style={{
