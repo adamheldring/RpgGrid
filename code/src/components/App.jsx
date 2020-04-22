@@ -1,6 +1,6 @@
 import React from "react";
 import { DndProvider } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
+import TouchBackend from "react-dnd-touch-backend";
 import Board from "./Board";
 import Toolbar from "./Toolbar";
 
@@ -146,7 +146,7 @@ class App extends React.Component {
       clickEnabled
     } = this.state;
     return (
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
         <div
           className="mainWrapper"
           style={{
