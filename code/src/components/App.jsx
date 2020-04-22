@@ -1,5 +1,5 @@
 import React from "react";
-import { DragDropContext } from "react-dnd";
+import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import Board from "./Board";
 import Toolbar from "./Toolbar";
@@ -146,42 +146,42 @@ class App extends React.Component {
       clickEnabled
     } = this.state;
     return (
-      <div
-        className="mainWrapper"
-        style={{
-          backgroundImage: `url(./bg/${background}.jpeg)`
-        }}
-      >
-        <Toolbar
-          boxSide={this.state.boxSide}
-          setBoxSide={updatedBoxSide => this.setBoxSide(updatedBoxSide)}
-          background={background}
-          setBackground={updatedBackground =>
-            this.setBackground(updatedBackground)
-          }
-          tiles={tiles}
-          handleTileDrop={(tileContent, tileTarget) =>
-            this.handleTileDrop(tileContent, tileTarget)
-          }
-          clickEnabled={clickEnabled}
-          toggleClickEnabled={this.toggleClickEnabled}
-        />
-        <Board
-          boardRef={this.boardRef}
-          boxSide={boxSide}
-          boardWidth={boardWidth}
-          boardHeight={boardHeight}
-          boxMatrix={boxMatrix}
-          tiles={tiles}
-          handleBoxClick={(rowIndex, boxIndex) =>
-            this.handleBoxClick(rowIndex, boxIndex)
-          }
-          clickEnabled={clickEnabled}
-        />
-      </div>
+      <DndProvider backend={HTML5Backend}>
+        <div
+          className="mainWrapper"
+          style={{
+            backgroundImage: `url(./bg/${background}.jpeg)`
+          }}
+        >
+          <Toolbar
+            boxSide={this.state.boxSide}
+            setBoxSide={updatedBoxSide => this.setBoxSide(updatedBoxSide)}
+            background={background}
+            setBackground={updatedBackground =>
+              this.setBackground(updatedBackground)
+            }
+            tiles={tiles}
+            handleTileDrop={(tileContent, tileTarget) =>
+              this.handleTileDrop(tileContent, tileTarget)
+            }
+            clickEnabled={clickEnabled}
+            toggleClickEnabled={this.toggleClickEnabled}
+          />
+          <Board
+            boardRef={this.boardRef}
+            boxSide={boxSide}
+            boardWidth={boardWidth}
+            boardHeight={boardHeight}
+            boxMatrix={boxMatrix}
+            tiles={tiles}
+            handleBoxClick={(rowIndex, boxIndex) =>
+              this.handleBoxClick(rowIndex, boxIndex)
+            }
+            clickEnabled={clickEnabled}
+          />
+        </div>
+      </DndProvider>
     );
   }
 }
-
-// export default App;
-export default DragDropContext(HTML5Backend)(App);
+export default App;
