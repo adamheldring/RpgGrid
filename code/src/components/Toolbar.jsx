@@ -14,30 +14,59 @@ const Toolbar = ({
   toggleClickEnabled
 }) => {
   const [isExpanded, toggleIsExpanded] = useState(false);
-  const [displayRight, setDisplayRight] = useState(true);
+  const [displayRight, toggleDisplayRight] = useState(true);
   return (
     <div
       className="toolbar__wrapper"
-      style={displayRight ? { right: 0 } : { left: 0 }}
+      style={{
+        right: `${displayRight ? "0" : "calc(100vw - var(--toolbar-width))"}`
+      }}
     >
-      <div
-        className="toolbar__toggle"
-        style={
-          displayRight
-            ? {
-                right: "20px",
-                backgroundColor: `${isExpanded ? "#2e90db" : "black"}`,
-                transform: `${isExpanded ? "scale(1.3)" : ""}`
-              }
-            : {
-                left: "20px",
-                backgroundColor: `${isExpanded ? "#2e90db" : "black"}`,
-                transform: `${isExpanded ? "scale(1.3)" : ""}`
-              }
-        }
-        onClick={() => toggleIsExpanded(!isExpanded)}
-      >
-        <i className="fab fa-fort-awesome" />
+      <div>
+        <button
+          className="toolbar__toggle"
+          style={
+            displayRight
+              ? {
+                  right: "20px",
+                  backgroundColor: `${
+                    isExpanded ? "var(--primary-color)" : "black"
+                  }`,
+                  transform: `${isExpanded ? "scale(1.3)" : ""}`
+                }
+              : {
+                  left: "20px",
+                  backgroundColor: `${
+                    isExpanded ? "var(--primary-color)" : "black"
+                  }`,
+                  transform: `${isExpanded ? "scale(1.3)" : ""}`
+                }
+          }
+          onClick={() => toggleIsExpanded(!isExpanded)}
+        >
+          <i className={isExpanded ? "fa fa-times" : "fab fa-fort-awesome"} />
+        </button>
+        {isExpanded && (
+          <button
+            className="toolbar__toggle"
+            style={
+              displayRight
+                ? {
+                    left: "20px",
+                    backgroundColor: `${isExpanded ? "#2e90db" : "black"}`,
+                    transform: `${isExpanded ? "scale(1.3)" : ""}`
+                  }
+                : {
+                    right: "20px",
+                    backgroundColor: `${isExpanded ? "#2e90db" : "black"}`,
+                    transform: `${isExpanded ? "scale(1.3)" : ""}`
+                  }
+            }
+            onClick={() => toggleDisplayRight(!displayRight)}
+          >
+            <i className={`fa fa-arrow-${displayRight ? "left" : "right"}`} />
+          </button>
+        )}
       </div>
       <div className={`toolbar ${isExpanded ? "" : "toolbar--collapsed"}`}>
         <select

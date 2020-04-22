@@ -1,5 +1,11 @@
+:root {
+	--primary-color: #2e90db;
+	--toolbar-width: 200px;
+}
+
 html, body {
 	overflow: hidden
+	
 }
 body {
 	box-sizing: border-box;
@@ -19,15 +25,15 @@ body {
 .toolbar {
 	color: white;
 	background-color: rgba(0,0,0,0.6);
-	width: 200px;
+	width: var(--toolbar-width);
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	opacity: 0.9;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
 	overflow: hidden;
 
 	&__wrapper{
@@ -35,6 +41,7 @@ body {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;	
+		transition: right 0.15s;
 	}
 
 	&--collapsed {
@@ -54,13 +61,18 @@ body {
 		font-weight: bold;
 		font-size: 20px;
 		border-radius: 50px;
-		background-color: black;
 		width: 40px;
 		height: 40px;
 		transition: all 0.3s;
+		border: 0;
+		cursor: pointer;
+		&:focus {
+			outline: 0;
+			box-shadow: 0 0 0 3px rgba(0, 123, 255, .5);
+		}
 	}
 	&__button {
-		height: 40px
+		height: 40px;
 	}
 	&__slider {
 		&--wrapper {
