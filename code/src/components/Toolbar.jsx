@@ -87,12 +87,15 @@ const Toolbar = ({
               if (tileIndex !== 0) {
                 return (
                   <DragTile
+                    key={tileIndex}
                     tile={tile}
                     handleTileDrop={(tileContent, tileTarget) =>
                       handleTileDrop(tileContent, tileTarget)
                     }
                   />
                 );
+              } else {
+                return undefined;
               }
             })}
           </div>
@@ -111,7 +114,6 @@ const Toolbar = ({
         <button className="toolbar__button" onClick={toggleClickEnabled}>
           {clickEnabled ? "Disable click" : "Enable click"}
         </button>
-        {/* <button className="toolbar__button">Save/Load</button> */}
       </div>
     </div>
   );

@@ -33,7 +33,9 @@ const Tile = props => {
 
   return connectDropTarget(
     <div
-      onClick={clickEnabled && (() => handleBoxClick(rowIndex, boxIndex))}
+      onClick={
+        clickEnabled ? () => handleBoxClick(rowIndex, boxIndex) : undefined
+      }
       className="grid__box"
       style={{
         width: `${boxSide}px`,
