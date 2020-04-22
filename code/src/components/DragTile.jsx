@@ -29,7 +29,7 @@ class DragTile extends React.Component {
       <div
         className="grid-box"
         style={{
-          border: `2px solid #444444`,
+          border: `2px solid #666666`,
           padding: `5px`,
           width: `75px`,
           heigth: `75px`,

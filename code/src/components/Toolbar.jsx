@@ -14,10 +14,27 @@ const Toolbar = ({
   toggleClickEnabled
 }) => {
   const [isExpanded, toggleIsExpanded] = useState(false);
+  const [displayRight, setDisplayRight] = useState(true);
   return (
-    <div className="toolbar__wrapper">
+    <div
+      className="toolbar__wrapper"
+      style={displayRight ? { right: 0 } : { left: 0 }}
+    >
       <div
         className="toolbar__toggle"
+        style={
+          displayRight
+            ? {
+                right: "20px",
+                backgroundColor: `${isExpanded ? "#2e90db" : "black"}`,
+                transform: `${isExpanded ? "scale(1.3)" : ""}`
+              }
+            : {
+                left: "20px",
+                backgroundColor: `${isExpanded ? "#2e90db" : "black"}`,
+                transform: `${isExpanded ? "scale(1.3)" : ""}`
+              }
+        }
         onClick={() => toggleIsExpanded(!isExpanded)}
       >
         <i className="fab fa-fort-awesome" />

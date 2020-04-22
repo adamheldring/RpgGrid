@@ -18,29 +18,27 @@ body {
 
 .toolbar {
 	color: white;
-	background-color: grey;
+	background-color: rgba(0,0,0,0.6);
 	width: 200px;
 	height: 100vh;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	opacity: 0.9;
-	-webkit-transition: width 0.3s;
-	transition: width 0.3s;
-	overflow-x: hidden;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+	overflow: hidden;
 
 	&__wrapper{
 		position: absolute;
-		right: 0;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;	
 	}
 
 	&--collapsed {
-		width: 0;
+		height: 0;
 		overflow: hidden;
 		border-bottom-left-radius: 20px;
 	}
@@ -52,15 +50,14 @@ body {
 		z-index: 10;
 		position: absolute;
 		top: 20px;
-		right: 20px;
-		float: right;
 		color: white;
 		font-weight: bold;
 		font-size: 20px;
-		background-color: black;
 		border-radius: 50px;
-		height: 40px;
+		background-color: black;
 		width: 40px;
+		height: 40px;
+		transition: all 0.3s;
 	}
 	&__button {
 		height: 40px
@@ -101,7 +98,7 @@ body {
 }
 
 .rangeslider-vertical .rangeslider__fill {
-	background-color: red
+	background-color: #2e90db
 }
 
 .rangeslider__label-item::before {
