@@ -89,6 +89,7 @@ const Toolbar = ({
                   <DragTile
                     key={tileIndex}
                     tile={tile}
+                    boxSide={boxSide}
                     handleTileDrop={(tileContent, tileTarget) =>
                       handleTileDrop(tileContent, tileTarget)
                     }
