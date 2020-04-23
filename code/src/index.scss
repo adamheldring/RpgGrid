@@ -113,6 +113,10 @@ body {
 	background-color: #2e90db
 }
 
+.rangeslider__labels {
+	width: 0 !important;
+}
+
 .rangeslider__label-item::before {
 	background-color: white !important;
 }
