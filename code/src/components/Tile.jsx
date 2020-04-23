@@ -1,6 +1,8 @@
 import React from "react";
-import { DropTarget } from "react-dnd";
+import { DropTarget, DragSource } from "react-dnd";
+import { flow } from "lodash";
 
+// TILE AS DROP TARGET FOR CREATE
 const tileTarget = {
   drop(props, monitor, component) {
     return {
@@ -15,6 +17,34 @@ function collect(connect, monitor) {
     connectDropTarget: connect.dropTarget(),
     hovered: monitor.isOver(),
     tile: monitor.getItem()
+  };
+}
+
+// TILE AS DRAG SOURCE FOR DELETE
+const tileSourceForDelete = {
+  beginDrag(props) {
+    return props.tile;
+  },
+  endDrag(props, monitor, component) {
+    if (!monitor.didDrop()) {
+      return;
+    }
+    return props.handleDeleteDrop(props.tile.content, monitor.getDropResult());
+  },
+  canDrag(props, monitor) {
+    if (props.locked) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+};
+
+function deleteTileCollect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
   };
 }
 
@@ -51,4 +81,7 @@ const Tile = props => {
   );
 };
 
-export default DropTarget("tile", tileTarget, collect)(Tile);
+export default flow(
+  DragSource("tile", tileSourceForDelete, deleteTileCollect),
+  DropTarget("tile", tileTarget, collect)
+)(Tile);

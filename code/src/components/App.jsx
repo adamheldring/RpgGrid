@@ -143,6 +143,8 @@ class App extends React.Component {
     this.setState({ boxMatrix: newMatrix });
   };
 
+  // TODO - handleDeleteDrop
+
   toggleLocked = () => {
     this.setState({ locked: !this.state.locked });
   };
