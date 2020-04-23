@@ -82,24 +82,22 @@ const Toolbar = ({
           <option value="desert">Desert</option>
         </select>
         <div className="toolbar__tiles">
-          <div className="tile">
-            {tiles.map((tile, tileIndex) => {
-              if (tileIndex !== 0) {
-                return (
-                  <DragTile
-                    key={tileIndex}
-                    tile={tile}
-                    boxSide={boxSide}
-                    handleTileDrop={(tileContent, tileTarget) =>
-                      handleTileDrop(tileContent, tileTarget)
-                    }
-                  />
-                );
-              } else {
-                return undefined;
-              }
-            })}
-          </div>
+          {tiles.map((tile, tileIndex) => {
+            if (tileIndex !== 0) {
+              return (
+                <DragTile
+                  key={tileIndex}
+                  tile={tile}
+                  boxSide={boxSide}
+                  handleTileDrop={(tileContent, tileTarget) =>
+                    handleTileDrop(tileContent, tileTarget)
+                  }
+                />
+              );
+            } else {
+              return undefined;
+            }
+          })}
         </div>
         <div className="toolbar__slider--wrapper">
           <Slider

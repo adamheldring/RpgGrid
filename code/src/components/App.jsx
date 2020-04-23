@@ -23,18 +23,16 @@ const HTML5toTouch = {
 const boardMargin = 20;
 const tiles = [
   { content: "" },
-  { content: "rock" },
-  { content: "water" },
-  { content: "tree" },
-  { content: "stone" },
+  { content: "water-sq" },
+  { content: "lava-sq" },
+  { content: "stone-sq" },
+  { content: "cryptic-sq" },
+  { content: "stairs" },
   { content: "barrel" },
-  { content: "cryptic" },
-  { content: "lava" },
-  { content: "stairs" }
-  // { content: "treetop" },
-  // { content: "water2" },
-  // { content: "rock2" },
-  // { content: "rock3" }
+  { content: "tree-1" },
+  { content: "tree-2" },
+  { content: "rock-1" },
+  { content: "rock-2" }
 ];
 
 class App extends React.Component {
@@ -129,8 +127,8 @@ class App extends React.Component {
 
   handleBoxClick = (rowIndex, boxIndex) => {
     const newMatrix = [...this.state.boxMatrix];
-    newMatrix[rowIndex][boxIndex] =
-      (newMatrix[rowIndex][boxIndex] + 1) % tiles.length;
+    newMatrix[rowIndex][boxIndex] = 0;
+    // (newMatrix[rowIndex][boxIndex] + 1) % tiles.length;
     console.table(newMatrix);
     this.setState({ boxMatrix: newMatrix });
   };

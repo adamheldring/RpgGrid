@@ -41,7 +41,7 @@ class DragTile extends React.Component {
       );
     };
     return connectDragSource(
-      <div>
+      <div style={{ marginBottom: `10px` }}>
         <div
           className="grid-box"
           style={{
@@ -49,7 +49,6 @@ class DragTile extends React.Component {
             padding: `0`,
             width: `75px`,
             height: `75px`,
-            marginBottom: `10px`,
             cursor: "pointer"
           }}
         >
