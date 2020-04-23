@@ -39,7 +39,7 @@ body {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;	
-		transition: right 0.15s;
+		transition: right 0.2s ease-out;
 	}
 
 	&--collapsed {
