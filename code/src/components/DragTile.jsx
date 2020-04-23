@@ -11,6 +11,13 @@ const tileSource = {
       return;
     }
     return props.handleTileDrop(props.tile.content, monitor.getDropResult());
+  },
+  canDrag(props, monitor) {
+    if (props.locked) {
+      return false;
+    } else {
+      return true;
+    }
   }
 };
 
@@ -24,7 +31,7 @@ function collect(connect, monitor) {
 
 class DragTile extends React.Component {
   render() {
-    const { isDragging, connectDragSource, tile, boxSide } = this.props;
+    const { isDragging, connectDragSource, tile, boxSide, locked } = this.props;
     const opacity = isDragging ? 0.5 : 1;
 
     const generatePreview = ({ itemType, item, style }) => {
@@ -49,7 +56,8 @@ class DragTile extends React.Component {
             padding: `0`,
             width: `75px`,
             height: `75px`,
-            cursor: "pointer"
+            cursor: "pointer",
+            opacity: locked ? "0.5" : "1"
           }}
         >
           <img

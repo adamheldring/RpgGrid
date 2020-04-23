@@ -9,7 +9,7 @@ const Board = ({
   tiles,
   boardRef,
   handleBoxClick,
-  clickEnabled
+  locked
 }) => {
   const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
   const nrOfBoxesHigh = Math.floor(boardHeight / boxSide);
@@ -40,7 +40,7 @@ const Board = ({
                     handleBoxClick={(rowIndex, boxIndex) =>
                       handleBoxClick(rowIndex, boxIndex)
                     }
-                    clickEnabled={clickEnabled}
+                    locked={locked}
                   />
                 );
               } else {

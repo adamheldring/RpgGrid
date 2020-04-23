@@ -10,8 +10,8 @@ const Toolbar = ({
   setBackground,
   tiles,
   handleTileDrop,
-  clickEnabled,
-  toggleClickEnabled
+  locked,
+  toggleLocked
 }) => {
   const [isExpanded, toggleIsExpanded] = useState(false);
   const [displayRight, toggleDisplayRight] = useState(true);
@@ -89,6 +89,7 @@ const Toolbar = ({
                   key={tileIndex}
                   tile={tile}
                   boxSide={boxSide}
+                  locked={locked}
                   handleTileDrop={(tileContent, tileTarget) =>
                     handleTileDrop(tileContent, tileTarget)
                   }
@@ -110,8 +111,29 @@ const Toolbar = ({
             onChange={value => setBoxSide(value)}
           />
         </div>
-        <button className="toolbar__button" onClick={toggleClickEnabled}>
-          {clickEnabled ? "Disable click" : "Enable click"}
+        <button
+          className={`toolbar__lock-button ${
+            locked ? "toolbar__lock-button--locked" : ""
+          }`}
+          onClick={toggleLocked}
+          style={{
+            backgroundColor: `${
+              locked ? "var(--warning-color)" : "var(--primary-color)"
+            }`
+          }}
+        >
+          <i
+            className={`fa fa-${locked ? "lock" : "lock-open"}`}
+            style={{
+              paddingLeft: `${locked ? "0" : "7.5px"}`
+            }}
+          />
+          <div
+            style={{
+              fontSize: "10px",
+              marginTop: "4px"
+            }}
+          />
         </button>
       </div>
     </div>

@@ -1,5 +1,6 @@
 :root {
 	--primary-color: #2e90db;
+	--warning-color: #bf0600;
 	--toolbar-width: 200px;
 }
 
@@ -76,12 +77,31 @@ body {
 		flex-wrap: wrap;
 		width: 165px;
 	}
-	&__button {
-		height: 40px;
-	}
 	&__slider {
 		&--wrapper {
 			background: grey
+		}
+	}
+	&__lock-button {
+		width: 70px;
+		height: 70px;
+		border-radius: 70px;
+		border: none;
+		background-color: var(--primary-color);
+		color: white;
+
+		&:focus {
+			outline: 0;
+			box-shadow: 0 0 0 3px rgba(0, 123, 255, .5);
+		}
+
+		i {
+				font-size: 30px;
+		}
+		&--locked {
+			&:focus {
+				box-shadow: 0 0 0 3px rgba(#bf0600, .5);
+			}	
 		}
 	}
 }

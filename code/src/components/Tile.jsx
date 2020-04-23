@@ -26,15 +26,13 @@ const Tile = props => {
     value,
     handleBoxClick,
     tiles,
-    clickEnabled
+    locked
   } = props;
   const { connectDropTarget, hovered } = props;
   const backgroundColor = hovered ? "lightgreen" : "";
   return connectDropTarget(
     <div
-      onClick={
-        clickEnabled ? () => handleBoxClick(rowIndex, boxIndex) : undefined
-      }
+      onClick={locked ? undefined : () => handleBoxClick(rowIndex, boxIndex)}
       className="grid__box"
       style={{
         width: `${boxSide}px`,

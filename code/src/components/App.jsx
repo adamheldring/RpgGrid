@@ -47,7 +47,7 @@ class App extends React.Component {
     boardWidth: 0,
     boxMatrix: [],
     background: "grass",
-    clickEnabled: false
+    locked: false
   };
 
   componentDidMount() {
@@ -143,8 +143,8 @@ class App extends React.Component {
     this.setState({ boxMatrix: newMatrix });
   };
 
-  toggleClickEnabled = () => {
-    this.setState({ clickEnabled: !this.state.clickEnabled });
+  toggleLocked = () => {
+    this.setState({ locked: !this.state.locked });
   };
 
   render() {
@@ -154,7 +154,7 @@ class App extends React.Component {
       boardHeight,
       boxMatrix,
       background,
-      clickEnabled
+      locked
     } = this.state;
     return (
       <DndProvider backend={MultiBackend} options={HTML5toTouch}>
@@ -175,8 +175,8 @@ class App extends React.Component {
             handleTileDrop={(tileContent, tileTarget) =>
               this.handleTileDrop(tileContent, tileTarget)
             }
-            clickEnabled={clickEnabled}
-            toggleClickEnabled={this.toggleClickEnabled}
+            locked={locked}
+            toggleLocked={this.toggleLocked}
           />
           <Board
             boardRef={this.boardRef}
@@ -188,7 +188,7 @@ class App extends React.Component {
             handleBoxClick={(rowIndex, boxIndex) =>
               this.handleBoxClick(rowIndex, boxIndex)
             }
-            clickEnabled={clickEnabled}
+            locked={locked}
           />
         </div>
       </DndProvider>
