@@ -30,7 +30,6 @@ const Tile = props => {
   } = props;
   const { connectDropTarget, hovered } = props;
   const backgroundColor = hovered ? "lightgreen" : "";
-
   return connectDropTarget(
     <div
       onClick={

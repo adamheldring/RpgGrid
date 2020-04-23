@@ -25,7 +25,16 @@ const tiles = [
   { content: "" },
   { content: "rock" },
   { content: "water" },
-  { content: "tree" }
+  { content: "tree" },
+  { content: "stone" },
+  { content: "barrel" },
+  { content: "cryptic" },
+  { content: "lava" },
+  { content: "stairs" }
+  // { content: "treetop" },
+  // { content: "water2" },
+  // { content: "rock2" },
+  // { content: "rock3" }
 ];
 
 class App extends React.Component {
@@ -120,30 +129,18 @@ class App extends React.Component {
 
   handleBoxClick = (rowIndex, boxIndex) => {
     const newMatrix = [...this.state.boxMatrix];
-    newMatrix[rowIndex][boxIndex] = (newMatrix[rowIndex][boxIndex] + 1) % 4;
+    newMatrix[rowIndex][boxIndex] =
+      (newMatrix[rowIndex][boxIndex] + 1) % tiles.length;
+    console.table(newMatrix);
     this.setState({ boxMatrix: newMatrix });
   };
 
   handleTileDrop = (tileContent, tileTarget) => {
     let newMatrix = [...this.state.boxMatrix];
-    let updatedValue;
-    switch (tileContent) {
-      case "rock": {
-        updatedValue = 1;
-        break;
-      }
-      case "water": {
-        updatedValue = 2;
-        break;
-      }
-      case "tree": {
-        updatedValue = 3;
-        break;
-      }
-      default: {
-        updatedValue = 0;
-      }
-    }
+    let updatedValue = tiles.indexOf(
+      tiles.find(tile => tile.content === tileContent)
+    );
+    if (!updatedValue > 0) updatedValue = 0;
     newMatrix[tileTarget.rowIndex][tileTarget.boxIndex] = updatedValue;
     this.setState({ boxMatrix: newMatrix });
   };
