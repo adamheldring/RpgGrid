@@ -128,8 +128,6 @@ class App extends React.Component {
   handleBoxClick = (rowIndex, boxIndex) => {
     const newMatrix = [...this.state.boxMatrix];
     newMatrix[rowIndex][boxIndex] = 0;
-    // (newMatrix[rowIndex][boxIndex] + 1) % tiles.length;
-    console.table(newMatrix);
     this.setState({ boxMatrix: newMatrix });
   };
 

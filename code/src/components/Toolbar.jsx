@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Slider from "react-rangeslider";
-import DragTile from "./DragTile";
+import DragTile from "./Tile/DragTile";
 import "react-rangeslider/lib/index.css";
 
 const Toolbar = ({
