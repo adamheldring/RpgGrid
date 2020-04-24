@@ -1,6 +1,5 @@
 import React from "react";
 import { DragSource } from "react-dnd";
-import { Preview } from "react-dnd-multi-backend";
 
 const tileSource = {
   beginDrag(props) {
@@ -31,26 +30,9 @@ function collect(connect, monitor) {
 
 class ToolbarTile extends React.Component {
   render() {
-    const { isDragging, connectDragSource, tile, boxSide, locked } = this.props;
+    const { isDragging, connectDragSource, tile, locked } = this.props;
     const opacity = isDragging ? 0.5 : 1;
 
-    const generatePreview = ({ itemType, item, style }) => {
-      return (
-        <div style={style}>
-          <div className="grid-box">
-            <img
-              style={{
-                width: boxSide,
-                height: boxSide,
-                opacity: "0.5"
-              }}
-              src={`./tiles/${tile.content}.png`}
-              alt="Tile"
-            />
-          </div>
-        </div>
-      );
-    };
     return connectDragSource(
       <div style={{ marginBottom: `10px` }}>
         <div
@@ -71,7 +53,6 @@ class ToolbarTile extends React.Component {
             alt="Tile"
           />
         </div>
-        <Preview generator={generatePreview} />
       </div>
     );
   }

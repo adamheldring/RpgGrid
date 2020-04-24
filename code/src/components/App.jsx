@@ -2,9 +2,13 @@ import React from "react";
 import { DndProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import TouchBackend from "react-dnd-touch-backend";
-import MultiBackend, { TouchTransition } from "react-dnd-multi-backend";
+import MultiBackend, {
+  TouchTransition,
+  Preview
+} from "react-dnd-multi-backend";
 import Board from "./Board";
 import Toolbar from "./Toolbar";
+import generatePreview from "../helpers/generatePreview";
 
 const HTML5toTouch = {
   backends: [
@@ -156,6 +160,11 @@ class App extends React.Component {
       background,
       locked
     } = this.state;
+
+    const generatePreviewWrapper = props => {
+      return generatePreview({ ...props, boxSide });
+    };
+
     return (
       <DndProvider backend={MultiBackend} options={HTML5toTouch}>
         <div
@@ -191,6 +200,7 @@ class App extends React.Component {
             locked={locked}
           />
         </div>
+        <Preview generator={generatePreviewWrapper} />
       </DndProvider>
     );
   }

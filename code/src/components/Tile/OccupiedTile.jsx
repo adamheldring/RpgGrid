@@ -49,7 +49,7 @@ function collect(connect, monitor) {
 class OccupiedTile extends React.Component {
   render() {
     const {
-      tile: { content },
+      tile,
       boxSide,
       isDragging,
       connectDragSource,
@@ -65,7 +65,7 @@ class OccupiedTile extends React.Component {
         <img
           className="grid__box--image"
           style={{ position: "relative", top: "2px" }}
-          src={`./tiles/${content}.png`}
+          src={`./tiles/${tile.content}.png`}
           alt="Tile"
         />
         {isDragging && (
