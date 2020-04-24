@@ -27,8 +27,8 @@ const tileSource = {
 
 function collect(connect, monitor) {
   return {
-    connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
+    connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
   };
 }
@@ -45,12 +45,12 @@ class OccupiedTileContent extends React.Component {
     return connectDragSource(
       <div
         style={{
-          position: "relative",
-          top: "2px"
+          position: "relative"
         }}
       >
         <img
           className="grid__box--image"
+          style={{ position: "relative", top: "2px" }}
           src={`./tiles/${content}.png`}
           alt="Tile"
           onClick={() => console.log("You Clicked")}
@@ -59,7 +59,7 @@ class OccupiedTileContent extends React.Component {
           <div
             style={{
               position: "absolute",
-              top: "0",
+              top: "2px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -71,7 +71,10 @@ class OccupiedTileContent extends React.Component {
           >
             <i
               className="fas fa-minus"
-              style={{ color: "white", fontSize: `${boxSide / 2}px` }}
+              style={{
+                color: "white",
+                fontSize: `${boxSide / 2}px`
+              }}
             />
           </div>
         )}
