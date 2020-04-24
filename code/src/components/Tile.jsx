@@ -67,9 +67,16 @@ const Tile = props => {
       style={{
         width: `${boxSide}px`,
         heigth: `${boxSide}px`,
-        backgroundColor: `${backgroundColor}`
+        backgroundColor: `${backgroundColor}`,
+        opacity: hovered ? "0.6" : "1"
       }}
     >
+      {hovered && (
+        <i
+          className="fas fa-plus"
+          style={{ fontSize: `${boxSide / 2}px`, position: "absolute" }}
+        />
+      )}
       {value > 0 && (
         <img
           className="grid__box--image"
