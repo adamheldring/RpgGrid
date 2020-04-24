@@ -8,13 +8,19 @@ const tileSource = {
     return props.tile;
   },
   endDrag(props, monitor, component) {
-    if (!monitor.didDrop()) {
-      return;
-    }
-    return props.handleTileDrop(
-      props.tileContent.content,
-      monitor.getDropResult()
+    console.log("tile Coordinates: ", props.tileCoordinates);
+    console.log("RESULT: ", monitor.getDropResult());
+    return props.handleBoxClear(
+      props.tileCoordinates.row,
+      props.tileCoordinates.col
     );
+    // if (!monitor.didDrop()) {
+    //   return;
+    // }
+    // return props.handleTileDrop(
+    //   props.tileContent.content,
+    //   monitor.getDropResult()
+    // );
   },
   canDrag(props, monitor) {
     if (props.locked) {
@@ -36,8 +42,8 @@ function collect(connect, monitor) {
 class OccupiedTileContent extends React.Component {
   render() {
     const {
-      boxSide,
       tile: { content },
+      boxSide,
       isDragging,
       connectDragSource
     } = this.props;
@@ -53,7 +59,6 @@ class OccupiedTileContent extends React.Component {
           style={{ position: "relative", top: "2px" }}
           src={`./tiles/${content}.png`}
           alt="Tile"
-          onClick={() => console.log("You Clicked")}
         />
         {isDragging && (
           <div
@@ -83,6 +88,6 @@ class OccupiedTileContent extends React.Component {
   }
 }
 
-export default DragSource("tileContent", tileSource, collect)(
+export default DragSource("tileToDelete", tileSource, collect)(
   OccupiedTileContent
 );

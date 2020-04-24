@@ -26,15 +26,16 @@ const Tile = props => {
     boxIndex,
     boxSide,
     value,
-    handleBoxClick,
+    handleBoxClear,
     tiles,
     locked
   } = props;
   const { connectDropTarget, hovered } = props;
   const backgroundColor = hovered ? "lightgreen" : "";
+  const tileCoordinates = { row: rowIndex, col: boxIndex };
   return connectDropTarget(
     <div
-      onClick={locked ? undefined : () => handleBoxClick(rowIndex, boxIndex)}
+      onClick={locked ? undefined : () => handleBoxClear(rowIndex, boxIndex)}
       className="grid__box"
       style={{
         width: `${boxSide}px`,
@@ -50,7 +51,12 @@ const Tile = props => {
         />
       )}
       {value > 0 && (
-        <OccupiedTileContent tile={tiles[value]} boxSide={boxSide} />
+        <OccupiedTileContent
+          tile={tiles[value]}
+          boxSide={boxSide}
+          tileCoordinates={tileCoordinates}
+          handleBoxClear={handleBoxClear}
+        />
       )}
     </div>
   );

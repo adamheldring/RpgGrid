@@ -125,7 +125,7 @@ class App extends React.Component {
     this.setState({ boxMatrix: newMatrix });
   };
 
-  handleBoxClick = (rowIndex, boxIndex) => {
+  handleBoxClear = (rowIndex, boxIndex) => {
     const newMatrix = [...this.state.boxMatrix];
     newMatrix[rowIndex][boxIndex] = 0;
     this.setState({ boxMatrix: newMatrix });
@@ -185,8 +185,8 @@ class App extends React.Component {
             boardHeight={boardHeight}
             boxMatrix={boxMatrix}
             tiles={tiles}
-            handleBoxClick={(rowIndex, boxIndex) =>
-              this.handleBoxClick(rowIndex, boxIndex)
+            handleBoxClear={(rowIndex, boxIndex) =>
+              this.handleBoxClear(rowIndex, boxIndex)
             }
             locked={locked}
           />

@@ -8,7 +8,7 @@ const Board = ({
   boxMatrix,
   tiles,
   boardRef,
-  handleBoxClick,
+  handleBoxClear,
   locked
 }) => {
   const nrOfBoxesWide = Math.floor(boardWidth / boxSide);
@@ -37,8 +37,8 @@ const Board = ({
                     value={box}
                     tiles={tiles}
                     key={boxIndex}
-                    handleBoxClick={(rowIndex, boxIndex) =>
-                      handleBoxClick(rowIndex, boxIndex)
+                    handleBoxClear={(rowIndex, boxIndex) =>
+                      handleBoxClear(rowIndex, boxIndex)
                     }
                     locked={locked}
                   />
