@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { DragSource } from "react-dnd";
-// import { Preview } from "react-dnd-multi-backend";
+import { Preview } from "react-dnd-multi-backend";
 
 const tileSource = {
   beginDrag(props) {
@@ -36,18 +36,46 @@ function collect(connect, monitor) {
 class OccupiedTileContent extends React.Component {
   render() {
     const {
+      boxSide,
       tile: { content },
       isDragging,
       connectDragSource
     } = this.props;
+
     return connectDragSource(
-      <img
-        className="grid__box--image"
-        src={`./tiles/${content}.png`}
-        alt="Tile"
-        onClick={() => console.log("You Clicked")}
-        style={{ border: isDragging ? "2px solid red" : "none" }}
-      />
+      <div
+        style={{
+          position: "relative",
+          top: "2px"
+        }}
+      >
+        <img
+          className="grid__box--image"
+          src={`./tiles/${content}.png`}
+          alt="Tile"
+          onClick={() => console.log("You Clicked")}
+        />
+        {isDragging && (
+          <div
+            style={{
+              position: "absolute",
+              top: "0",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "red",
+              opacity: "0.5",
+              width: `${boxSide - 4}px `,
+              height: `${boxSide - 4}px`
+            }}
+          >
+            <i
+              className="fas fa-minus"
+              style={{ color: "white", fontSize: `${boxSide / 2}px` }}
+            />
+          </div>
+        )}
+      </div>
     );
   }
 }

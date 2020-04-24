@@ -49,7 +49,9 @@ const Tile = props => {
           style={{ fontSize: `${boxSide / 2}px`, position: "absolute" }}
         />
       )}
-      {value > 0 && <OccupiedTileContent tile={tiles[value]} />}
+      {value > 0 && (
+        <OccupiedTileContent tile={tiles[value]} boxSide={boxSide} />
+      )}
     </div>
   );
 };

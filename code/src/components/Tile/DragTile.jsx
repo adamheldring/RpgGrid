@@ -39,7 +39,11 @@ class DragTile extends React.Component {
         <div style={style}>
           <div className="grid-box">
             <img
-              style={{ width: boxSide, height: boxSide }}
+              style={{
+                width: boxSide,
+                height: boxSide,
+                opacity: "0.5"
+              }}
               src={`./tiles/${tile.content}.png`}
               alt="Tile"
             />
