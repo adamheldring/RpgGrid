@@ -15,8 +15,9 @@ const tileTarget = {
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
+    tile: monitor.getItem(),
     hovered: monitor.isOver(),
-    tile: monitor.getItem()
+    dragToDelete: monitor.getItem() && !!monitor.getItem().tileCoordinates
   };
 }
 
@@ -30,8 +31,8 @@ const Tile = props => {
     tiles,
     locked
   } = props;
-  const { connectDropTarget, hovered } = props;
-  const backgroundColor = hovered ? "lightgreen" : "";
+  const { connectDropTarget, hovered, dragToDelete } = props;
+  const backgroundColor = hovered && !dragToDelete ? "lightgreen" : "";
   const tileCoordinates = { row: rowIndex, col: boxIndex };
   return connectDropTarget(
     <div
@@ -41,10 +42,10 @@ const Tile = props => {
         width: `${boxSide}px`,
         heigth: `${boxSide}px`,
         backgroundColor: `${backgroundColor}`,
-        opacity: hovered ? "0.6" : "1"
+        opacity: hovered && !dragToDelete ? "0.6" : "1"
       }}
     >
-      {hovered && (
+      {hovered && !dragToDelete && (
         <i
           className="fas fa-plus"
           style={{ fontSize: `${boxSide / 2}px`, position: "absolute" }}
@@ -56,6 +57,9 @@ const Tile = props => {
           boxSide={boxSide}
           tileCoordinates={tileCoordinates}
           handleBoxClear={handleBoxClear}
+          dragToDelete={dragToDelete}
+          hovered={hovered}
+          locked={locked}
         />
       )}
     </div>

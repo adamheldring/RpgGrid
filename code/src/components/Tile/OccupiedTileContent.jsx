@@ -1,22 +1,28 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { DragSource } from "react-dnd";
-import { Preview } from "react-dnd-multi-backend";
 
 const tileSource = {
   beginDrag(props) {
-    console.log("Begin drag!");
-    return props.tile;
+    return { tileCoordinates: props.tileCoordinates, ...props.tile };
   },
   endDrag(props, monitor, component) {
-    console.log("tile Coordinates: ", props.tileCoordinates);
-    console.log("props: ", props);
-    console.log("RESULT: ", monitor.getDropResult());
-
     // Delete if content dragged and dropped outside of it's box
-    if (
-      monitor.getDropResult().boxIndex !== props.tileCoordinates.col ||
-      monitor.getDropResult().rowIndex !== props.tileCoordinates.row
-    ) {
+    if (monitor.didDrop()) {
+      if (
+        monitor.getDropResult().boxIndex !== props.tileCoordinates.col ||
+        monitor.getDropResult().rowIndex !== props.tileCoordinates.row
+      ) {
+        // Dropped in other box - delete
+        return props.handleBoxClear(
+          props.tileCoordinates.row,
+          props.tileCoordinates.col
+        );
+      } else {
+        // Dropped back in same box - keep
+        return null;
+      }
+    } else {
+      // Dropped outside of board - delete
       return props.handleBoxClear(
         props.tileCoordinates.row,
         props.tileCoordinates.col
@@ -46,7 +52,8 @@ class OccupiedTileContent extends React.Component {
       tile: { content },
       boxSide,
       isDragging,
-      connectDragSource
+      connectDragSource,
+      hovered
     } = this.props;
 
     return connectDragSource(
@@ -69,19 +76,21 @@ class OccupiedTileContent extends React.Component {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "red",
+              backgroundColor: `${hovered ? "yellow" : "red"}`,
               opacity: "0.5",
               width: `${boxSide - 4}px `,
               height: `${boxSide - 4}px`
             }}
           >
-            <i
-              className="fas fa-minus"
-              style={{
-                color: "white",
-                fontSize: `${boxSide / 2}px`
-              }}
-            />
+            {!hovered && (
+              <i
+                className="fas fa-minus"
+                style={{
+                  color: "white",
+                  fontSize: `${boxSide / 2}px`
+                }}
+              />
+            )}
           </div>
         )}
       </div>
