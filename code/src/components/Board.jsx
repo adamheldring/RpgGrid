@@ -1,5 +1,5 @@
 import React from "react";
-import Tile from "./Tile/Tile";
+import TileWrapper from "./Tile/TileWrapper";
 
 const Board = ({
   boxSide,
@@ -30,7 +30,7 @@ const Board = ({
             return row.map((box, boxIndex) => {
               if (boxIndex < nrOfBoxesWide) {
                 return (
-                  <Tile
+                  <TileWrapper
                     rowIndex={rowIndex}
                     boxIndex={boxIndex}
                     boxSide={boxSide}

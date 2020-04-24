@@ -46,7 +46,7 @@ function collect(connect, monitor) {
   };
 }
 
-class OccupiedTileContent extends React.Component {
+class OccupiedTile extends React.Component {
   render() {
     const {
       tile: { content },
@@ -98,4 +98,4 @@ class OccupiedTileContent extends React.Component {
   }
 }
 
-export default DragSource("tile", tileSource, collect)(OccupiedTileContent);
+export default DragSource("tile", tileSource, collect)(OccupiedTile);

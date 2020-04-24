@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Slider from "react-rangeslider";
-import DragTile from "./Tile/DragTile";
+import ToolbarTile from "./Tile/ToolbarTile";
 import "react-rangeslider/lib/index.css";
 
 const Toolbar = ({
@@ -85,7 +85,7 @@ const Toolbar = ({
           {tiles.map((tile, tileIndex) => {
             if (tileIndex !== 0) {
               return (
-                <DragTile
+                <ToolbarTile
                   key={tileIndex}
                   tile={tile}
                   boxSide={boxSide}

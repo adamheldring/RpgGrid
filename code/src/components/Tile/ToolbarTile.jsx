@@ -29,7 +29,7 @@ function collect(connect, monitor) {
   };
 }
 
-class DragTile extends React.Component {
+class ToolbarTile extends React.Component {
   render() {
     const { isDragging, connectDragSource, tile, boxSide, locked } = this.props;
     const opacity = isDragging ? 0.5 : 1;
@@ -77,4 +77,4 @@ class DragTile extends React.Component {
   }
 }
 
-export default DragSource("tile", tileSource, collect)(DragTile);
+export default DragSource("tile", tileSource, collect)(ToolbarTile);

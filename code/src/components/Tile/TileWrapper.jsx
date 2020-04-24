@@ -1,6 +1,6 @@
 import React from "react";
 import { DropTarget } from "react-dnd";
-import OccupiedTileContent from "./OccupiedTileContent";
+import OccupiedTile from "./OccupiedTile";
 
 // TILE AS DROP TARGET FOR CREATE
 const tileTarget = {
@@ -21,7 +21,7 @@ function collect(connect, monitor) {
   };
 }
 
-const Tile = props => {
+const TileWrapper = props => {
   const {
     rowIndex,
     boxIndex,
@@ -36,7 +36,6 @@ const Tile = props => {
   const tileCoordinates = { row: rowIndex, col: boxIndex };
   return connectDropTarget(
     <div
-      onClick={locked ? undefined : () => handleBoxClear(rowIndex, boxIndex)}
       className="grid__box"
       style={{
         width: `${boxSide}px`,
@@ -52,7 +51,7 @@ const Tile = props => {
         />
       )}
       {value > 0 && (
-        <OccupiedTileContent
+        <OccupiedTile
           tile={tiles[value]}
           boxSide={boxSide}
           tileCoordinates={tileCoordinates}
@@ -66,4 +65,4 @@ const Tile = props => {
   );
 };
 
-export default DropTarget("tile", tileTarget, collect)(Tile);
+export default DropTarget("tile", tileTarget, collect)(TileWrapper);
