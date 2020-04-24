@@ -9,18 +9,19 @@ const tileSource = {
   },
   endDrag(props, monitor, component) {
     console.log("tile Coordinates: ", props.tileCoordinates);
+    console.log("props: ", props);
     console.log("RESULT: ", monitor.getDropResult());
-    return props.handleBoxClear(
-      props.tileCoordinates.row,
-      props.tileCoordinates.col
-    );
-    // if (!monitor.didDrop()) {
-    //   return;
-    // }
-    // return props.handleTileDrop(
-    //   props.tileContent.content,
-    //   monitor.getDropResult()
-    // );
+
+    // Delete if content dragged and dropped outside of it's box
+    if (
+      monitor.getDropResult().boxIndex !== props.tileCoordinates.col ||
+      monitor.getDropResult().rowIndex !== props.tileCoordinates.row
+    ) {
+      return props.handleBoxClear(
+        props.tileCoordinates.row,
+        props.tileCoordinates.col
+      );
+    }
   },
   canDrag(props, monitor) {
     if (props.locked) {
@@ -88,6 +89,4 @@ class OccupiedTileContent extends React.Component {
   }
 }
 
-export default DragSource("tileToDelete", tileSource, collect)(
-  OccupiedTileContent
-);
+export default DragSource("tile", tileSource, collect)(OccupiedTileContent);

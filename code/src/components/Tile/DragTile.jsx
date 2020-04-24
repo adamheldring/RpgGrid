@@ -7,7 +7,6 @@ const tileSource = {
     return props.tile;
   },
   endDrag(props, monitor, component) {
-    console.log("TEST THEN REMOVE: ", monitor.getDropResult);
     if (!monitor.didDrop()) {
       return;
     }

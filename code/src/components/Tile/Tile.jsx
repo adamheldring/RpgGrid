@@ -1,5 +1,5 @@
 import React from "react";
-import { DropTarget, DragSource } from "react-dnd";
+import { DropTarget } from "react-dnd";
 import OccupiedTileContent from "./OccupiedTileContent";
 
 // TILE AS DROP TARGET FOR CREATE
