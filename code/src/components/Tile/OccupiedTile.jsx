@@ -63,7 +63,7 @@ class OccupiedTile extends React.Component {
         }`}
         style={{
           position: "relative",
-          cursor: locked ? "auto" : "pointer"
+          cursor: locked ? "auto" : "grab"
         }}
       >
         <img
