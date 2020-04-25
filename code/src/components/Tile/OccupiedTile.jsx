@@ -53,13 +53,17 @@ class OccupiedTile extends React.Component {
       boxSide,
       isDragging,
       connectDragSource,
-      hovered
+      hovered,
+      locked
     } = this.props;
-
     return connectDragSource(
       <div
+        className={`${
+          !isDragging && !locked ? "occupied-tile__wrapper--highlight" : ""
+        }`}
         style={{
-          position: "relative"
+          position: "relative",
+          cursor: locked ? "auto" : "pointer"
         }}
       >
         <img
@@ -67,6 +71,17 @@ class OccupiedTile extends React.Component {
           style={{ position: "relative", top: "2px" }}
           src={`./tiles/${tile.content}.png`}
           alt="Tile"
+        />
+        <div
+          className="occupied-tile__editframe"
+          style={{
+            position: "absolute",
+            top: "-2px",
+            left: "-4px",
+            border: "4px solid yellow",
+            width: `${boxSide - 4}px `,
+            height: `${boxSide - 4}px`
+          }}
         />
         {isDragging && (
           <div
