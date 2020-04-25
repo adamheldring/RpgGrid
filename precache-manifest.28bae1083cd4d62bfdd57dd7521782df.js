@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "54d24a7ad2a386af1ff5",
+    "revision": "17f9a47f430408a0d6cc",
     "url": "/RpgGrid/static/css/main.f9332b2d.chunk.css"
   },
   {
-    "revision": "54d24a7ad2a386af1ff5",
-    "url": "/RpgGrid/static/js/main.9412a3da.chunk.js"
+    "revision": "17f9a47f430408a0d6cc",
+    "url": "/RpgGrid/static/js/main.13fc9960.chunk.js"
   },
   {
     "revision": "86d83083627334c8c687",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/RpgGrid/static/js/2.90e5e3d7.chunk.js"
   },
   {
-    "revision": "fe2c4eaa1250114cd44d51a315f75a1c",
+    "revision": "a184f01532638b99bed3a11e9aeb6603",
     "url": "/RpgGrid/index.html"
   }
 ];

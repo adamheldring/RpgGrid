@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/RpgGrid/precache-manifest.b42e9c732a5aba941f352d6097d020b8.js"
+  "/RpgGrid/precache-manifest.28bae1083cd4d62bfdd57dd7521782df.js"
 );
 
 workbox.clientsClaim();
