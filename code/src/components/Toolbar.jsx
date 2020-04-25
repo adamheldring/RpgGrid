@@ -92,7 +92,7 @@ const Toolbar = ({
             🏜 DESERT
           </option>
           <option value="water" disabled={locked}>
-            🌊 WATER
+            🌊 OCEAN
           </option>
         </select>
         <div className="toolbar__tiles">
@@ -114,15 +114,21 @@ const Toolbar = ({
             }
           })}
         </div>
-        <div className="toolbar__slider--wrapper">
+        <div
+          className="toolbar__slider--wrapper"
+          style={{ opacity: locked ? "0.7" : "1" }}
+        >
           <Slider
             labels={{ 50: "S", 100: "M", 150: "L" }}
             className="toolbar__slider"
             min={50}
             max={150}
+            step={5}
             orientation="vertical"
             value={boxSide}
-            onChange={value => setBoxSide(value)}
+            onChange={value => {
+              !locked && setBoxSide(value);
+            }}
           />
         </div>
         <button
