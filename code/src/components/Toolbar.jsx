@@ -13,7 +13,7 @@ const Toolbar = ({
   locked,
   toggleLocked
 }) => {
-  const [isExpanded, toggleIsExpanded] = useState(false);
+  const [isExpanded, toggleIsExpanded] = useState(true);
   const [displayRight, toggleDisplayRight] = useState(true);
   return (
     <div
