@@ -70,16 +70,30 @@ const Toolbar = ({
       </div>
       <div className={`toolbar ${isExpanded ? "" : "toolbar--collapsed"}`}>
         <select
-          style={{ marginBottom: "20px" }}
-          name="backgroundPicker"
-          id="backgroundPicker"
+          style={{
+            display: "inline-block",
+            width: "164px",
+            margin: "0px 20px 20px 20px",
+            opacity: locked ? "0.7" : "1"
+          }}
+          className="toolbar__custom-select"
+          name="backgroundSelect"
+          id="backgroundSelect"
           value={background}
           onChange={e => setBackground(e.target.value)}
         >
-          <option value="grass">Meadow</option>
-          <option value="water">Water</option>
-          <option value="forest">Forest</option>
-          <option value="desert">Desert</option>
+          <option value="grass" disabled={locked}>
+            ☘ MEADOW
+          </option>
+          <option value="forest" disabled={locked}>
+            🌲 FOREST
+          </option>
+          <option value="desert" disabled={locked}>
+            🏜 DESERT
+          </option>
+          <option value="water" disabled={locked}>
+            🌊 WATER
+          </option>
         </select>
         <div className="toolbar__tiles">
           {tiles.map((tile, tileIndex) => {
