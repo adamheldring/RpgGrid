@@ -42,7 +42,7 @@ class ToolbarTile extends React.Component {
             padding: `0`,
             width: `75px`,
             height: `75px`,
-            cursor: "pointer",
+            cursor: "grab",
             opacity: locked ? "0.5" : "1"
           }}
         >
